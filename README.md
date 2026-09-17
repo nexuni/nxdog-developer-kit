@@ -40,7 +40,10 @@ docs/
     ros2-interfaces.md    Notes for the ROS 2 interface contract.
   mapping/
     mapping-quick-start-guide.md
-  security-frontend/      Security frontend user guide and images.
+  security-frontend/
+    security-frontend-user-guide.md        English user guide.
+    security-frontend-user-guide.zh-TW.md  Traditional Chinese user guide.
+    images/                                User guide screenshots.
 ```
 
 ## Start Here
@@ -54,7 +57,8 @@ docs/
 4. Review the nxmap beginner mapping workflow:
    [docs/mapping/mapping-quick-start-guide.md](docs/mapping/mapping-quick-start-guide.md)
 5. Review the security frontend user guide:
-   [docs/security-frontend/security-frontend-user-guide.md](docs/security-frontend/security-frontend-user-guide.md)
+   [English](docs/security-frontend/security-frontend-user-guide.md) |
+   [繁體中文](docs/security-frontend/security-frontend-user-guide.zh-TW.md)
 
 ## Product Tool URLs
 

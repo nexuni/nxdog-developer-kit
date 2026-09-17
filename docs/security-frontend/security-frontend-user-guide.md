@@ -1,372 +1,286 @@
-# **0. Getting Started**
+# Security Frontend User Guide
 
-When you first enter the interface, the system provides an onboarding screen for creating an account, as shown in Figure 1.
-Follow the prompts and enter the administrator account name and password.
+[繁體中文](security-frontend-user-guide.zh-TW.md)
 
-![][embedded-image-1]
+This guide describes the current nxdog Security Frontend. The pages and actions available to you depend on your account role, permissions, enabled product features, and connected hardware.
 
-**Figure 1**
+## 1. Overview
 
-# **1. Quick Start Guide**
+The Security Frontend is the main web interface for monitoring and operating an nxdog security patrol robot. Use it to:
 
-0. Go to **Map > General** to configure the map and Home Point.
-1. **Set the Home Point (origin)**  
-   After entering the system, go to **Map > General** and click **Home Point** to set the robot dog's starting position.  
-2. **Create an inspection route**  
-   After setting the Home Point, go to **Map > Route** to create the required inspection route.  
-3. **Create an inspection plan**  
-   Next, go to **Map > Plan** and combine the created routes into an inspection plan.  
-4. **Start inspection**  
-   After completing the settings above, the robot dog will automatically start executing the inspection plan.
+- Monitor robot, mission, camera, map, event, and sensor status.
+- Send the robot to a map position, asset point, route, or patrol plan.
+- Review task, detection, and emergency records.
+- Replay NVR recordings and robot trajectories.
+- Create asset points, routes, patrol plans, and schedules.
+- Check service and hardware health.
+- Configure the system, notifications, engineering tools, and users.
 
+## 2. Before You Begin
 
+1. Connect your computer and the robot-side computers to the same network.
+2. Find the Pi 5 IP address assigned to the system.
+3. Open `https://<pi5-ip>` in a current desktop browser.
+4. Accept the browser's local-certificate warning only after confirming that the address is the correct robot.
 
-# **2. Home**
+The interface is designed for a desktop-sized display. A stable connection is especially important for live video, manual driving, software updates, and map editing.
 
-As shown in Figure 2, select **Home** from the sidebar to open the home page. You can also switch pages from the sidebar.
+## 3. Sign In and Account
 
-![][image2]
+### First-time setup
 
-**Figure 2**
+An uninitialized system opens the onboarding flow instead of the sign-in form. Follow the on-screen privacy and license steps, then create the first administrator account. Store the administrator password securely.
 
-## Dashboard
+### Sign in
 
-As shown in Figure 3, you can perform non-scheduled real-time operations from the Dashboard. You can pause, resume, or clear the robot dog's current task here.  
-You can also directly command the robot dog to go to or execute a predefined Goal, Route, or Patrol Plan, or command it to return Home.  
-In addition, you can control the robot dog's headlight, switch operating modes, enable the microphone, and play preset sound effects.
+Enter your **Username** and **Password**, then select **Login**.
 
-| Icon | Description |
-| :---- | :---- |
-| ![][image3] | Displays upcoming inspection schedules. Click to view the robot dog's inspection plans for the next three days, and skip or resume the current inspection plan. |
-| ![][image4] | Click to preview or download the latest inspection report, which includes all AI detection events from the inspection. |
-| ![][image5] | Click to switch to Manual Mode. When the robot dog is idle, it can be controlled with the joystick. |
-| ![][image6] | Displays the map currently used by the robot dog. Click to switch to and preview other maps. |
-| ![][image7] | Clears the robot dog's current task. |
-| ![][image8]/![][image9] | Pauses or resumes the robot dog's current task. |
-| ![][image10] | Commands the robot dog to return Home. |
-| ![][image11] | Click to select a destination on the map. After confirmation, the robot dog will move to that location. |
-| ![][image12] | Click to select a predefined Route. After confirmation, the robot dog will execute it immediately. |
-| ![][image13] | Click to select a predefined Goal. After confirmation, the robot dog will go there immediately. |
-| ![][image14] | Click to open a dialog for selecting a preset inspection plan. In the dialog, you can preview the inspection route, choose whether to start from the nearest point or execute the full plan, and decide whether to return Home after completion. After confirmation, the robot dog will immediately execute the selected plan. |
-| ![][image15] | Click to open the control panel, where you can enable the microphone, play preset sound effects, adjust the headlight, and switch behavior modes. |
+![English sign-in page](images/en-sign-in.png)
 
-![][image16]
+If an administrator assigned a temporary or default password, the system requires you to replace it before the rest of the interface becomes available.
 
-**Figure 3**
+### Account menu
 
-## System Overview
+Select your name at the bottom of the sidebar to:
 
-As shown in Figure 4, this section provides an overview of system information.
+- Open **Reset Password**, enter the current password, and choose a new password of at least eight characters.
+- Select **Logout** to end the session.
 
-### Recent Events
+### Language, date format, and theme
 
-The Recent Events panel displays recent robot dog activities, including system errors, AI detection events, and emergency events. Click the upper-right corner to view more events.
+Open **Setting > General > Personalization** to choose:
 
-### Task List
+- Interface language: English or Traditional Chinese.
+- Date and time display format.
+- System, light, or dark colour scheme.
 
-The Task List panel displays the latest task execution results. Click the upper-right corner to view more records and detailed information.
+Language and date-format preferences follow the signed-in account. The colour scheme is stored in the current browser.
 
-### Status
+## 4. Interface Tour
 
-The Status panel displays the robot dog's current status, including battery level, charging status, maximum motor temperature, current speed, and emergency button status.
+The left sidebar provides the main navigation:
 
-![][image17]
+| Page | Purpose |
+| --- | --- |
+| **Home** | Live operations dashboard. |
+| **Logs** | Task reports, detection events, and emergency events. |
+| **Replay** | Recorded video, timeline, and trajectory replay. |
+| **Map** | Asset points, routes, and patrol plans. |
+| **Health** | Service, computer, storage, network, and motor health. |
+| **Setting** | Personal, system, notification, engineering, and user settings. |
 
-**Figure 4**
+Use **Collapse** to show only sidebar icons. The colour toggle near the lower-left corner switches the current browser between light and dark display. Settings are hidden if your account has none of the required permissions.
 
-## Live Video
+## 5. Quick Start: Create and Run a Patrol
 
-As shown in Figure 5, you can view live video from the main camera and the left and right side cameras in this section. You can also refresh or pause the video using the buttons in the upper-right corner.
+1. Open **Setting > General > System** and confirm the active map. Upload a map package first if the required map is not available.
+2. On **Home**, use **Set home point** to place the Home marker at the charging station and point its arrow in the docking direction.
+3. Open **Map > Asset points**, select **+**, choose a map, name the point, optionally assign a group, and place and orient it on the map.
+4. Open **Map > Route**, select **+**, choose the map, enter a name and speed, then add route points in travel order and set their headings.
+5. Open **Map > Patrol plan**, select **+**, assemble a patrol from routes, asset points, existing plans, and task actions, then save it.
+6. Select **Set schedule** on the patrol card to add one or more weekly schedules, or run the patrol immediately from **Home > Send the robot > Patrol plan**.
 
-![][image18]
+Always confirm that the map, Home position, route direction, safety area, and robot surroundings are correct before dispatching a task.
 
-**Figure 5**
+## 6. Home Dashboard
 
-# **3. Map Page**
+The Home page is the live operating view. Its header shows the selected robot, current and next work, background task, battery, maximum motor temperature, velocity, emergency-button state, and server link.
 
-## Home Position Settings
+![English Home dashboard](images/en-dashboard.png)
 
-1. As shown in Figure 6, select **Map** from the sidebar to open the map settings page.  
-2. As shown in Figure 7, select **General** from the top menu to open the general settings page.  
-3. Click **Home Point** to open the settings dialog, as shown in Figure 8.  
-4. Select a map from the lower-left corner.  
-5. After the map is displayed, click the map to set the Home position.  
-6. Adjust the orientation on the right so that it faces the charging dock.
+### Cameras and map
 
-![][image19]
+- The camera panel shows the available main, side, thermal, PTZ, or lidar feeds for the selected robot. Use the feed controls to pause, resume, refresh, expand, or enter full screen when supported.
+- The map shows the robot, Home point, live navigation path, next stop, temporary no-go zones, obstacles, and unreachable areas.
+- Drag and zoom the map as needed. **Follow robot** returns the view to the selected robot after manual panning.
+- The obstacle display cycles between all scan structure, obstacles only, and off. The reachability control shows or hides areas the robot cannot currently reach.
 
-**Figure 6**
+### Task controls
 
-![][image20]
+The map command row provides the controls your account is allowed to use:
 
-**Figure 7**
+- **Stop** clears the current queued work.
+- **Pause/Resume** holds or continues the current task.
+- **Go Home** sends the robot to its configured Home point.
+- **Send the robot** opens four dispatch methods:
+  - **Click to go**: select a reachable position on the map and confirm it.
+  - **Route**: select a saved route and review its map preview.
+  - **Asset point**: select a saved named destination.
+  - **Patrol plan**: select a plan and its available run options.
+- **No-go zones** temporarily closes a rectangular area so navigation routes around it. Choose a duration or keep it closed until manually reopened.
+- **Set home point** moves and rotates the Home marker. Save only when the marker matches the real charging station.
 
-![][image21]
+Controls become unavailable when the selected robot is offline or an AI agent has taken control.
 
-**Figure 8**
+### Engineering mode
 
-## Initial Pose
+Administrators with robot-control permission can enable **Engineering** in the header. It adds manual driving controls and direct robot instruments for microphone audio, canned audio, lighting, posture/mode, and skipping the current stop.
 
-If localization has drifted, click the **Initial Pose** button, as shown in Figure 6, and select the current position, as shown in the figure.
+Manual driving is intended for an operator standing near the robot. It is available only while the robot is idle or charging. Confirm the area is clear before moving the robot.
 
-![][image-init-pose]
+### Mission and event panels
 
-**Figure: Initial Pose**
+- **Mission** separates earlier runs, the current run, and scheduled runs. Expand a run for its stops and events. Authorized users can skip or restore eligible scheduled runs.
+- **Events** shows recent detections and their details.
+- **Records** highlights emergency and failed-task records.
+- **Sensor modules** shows the latest health reported by compute, motor, thermal, gas, navigation, NVR, detection, and security-monitor modules when installed.
+- The chat button opens **NXDOG Assistant** when the server has a chat service configured.
 
-## Goal Management
+## 7. Logs
 
-1. On the map settings page, as shown in Figure 9, select **Goal** from the top menu to open the Goal settings page.  
-2. Click the **"+"** button in the upper-right corner to open the Goal settings dialog, as shown in Figure 10.  
-3. Select a map, enter a name, and enter or select a group name.  
-4. After the map is displayed, click the map to set the Goal position.  
-5. Set the **Degree** below to define the direction the robot dog should face during inspection.
-6. You can click a card to enter the editing page. On this page, you can edit or delete the Goal, as shown in the goal edit figure.
+Open **Logs** and choose **Tasks**, **Events**, or **Emergency**.
 
-![][image22]
+![English task records page](images/en-records.png)
 
-**Figure 9**
+### Tasks
 
-![][image23]
+The Tasks tab is the default view. Select a run to see its source, result, duration, battery usage, route on the map, stop sequence, and associated detections or failures. Runs can originate from a schedule, manual dispatch, or AI agent.
 
-**Figure 10**
+### Events
 
-![][goal-edit]
+The Events tab lists AI detections. Filter by event type, time range, or a selected map area. Switch between image and map views, and use the PDF action to export the currently filtered event list.
 
-**Figure: Goal Edit**
+### Emergency
 
+The Emergency tab lists navigation, network, safety, and other urgent records. Use the display options to inspect record details and locations. Status and available actions vary with the event and your permissions.
 
+## 8. Replay
 
-## Route Management
+Open **Replay** to review NVR recordings together with the robot trajectory.
 
-1. On the map settings page, as shown in Figure 11, select **Route** from the top menu to open the Route settings page.  
-2. Click the **"+"** button in the upper-right corner to open the Route settings dialog, as shown in Figure 12.  
-3. Select a map, enter a name, select the AI detection mode and event type, and set the speed level for the route.  
-4. After the map is displayed, click multiple points on the map in sequence to define the route, then adjust **Degree** on the right to set the robot dog's orientation at each point.
-5. You can click a card to enter the editing page. On this page, you can edit or delete the Route, as shown in the route edit figure.
+![English replay page](images/en-replay.png)
 
-![][image24]
+1. Select a date in the calendar. Dates with recordings are indicated by the interface.
+2. Choose **Single** for one camera or **Triple** for the three configured channels.
+3. In Single mode, select the camera to display.
+4. Select a recorded segment on the timeline or drag the playhead to the required time.
+5. Use **Play/Pause**, **Previous event**, **Next event**, timeline zoom, and the `0.5x` to `8x` speed selector.
+6. Use the collapse arrow to give the video area more space. Audio, volume, and per-camera controls appear only when the recording and browser support them.
 
-**Figure 11**
+The map panel follows recorded trajectory data for the selected time. If the page reports no video or no active trajectory, choose another recorded segment or verify NVR and navigation service health.
 
-![][image25]
+## 9. Map Management
 
-**Figure 12**
+Map pages are hidden from Viewer accounts and are further controlled by feature permissions. The map selector and search/filter controls are in the upper-right filter menu.
 
-![][embedded-image-2]
+### Asset points
 
-**Figure: Route Edit**
+Asset points are named destinations used by operators and patrol plans.
 
+To create one, open **Map > Asset points**, select **+**, choose a map, enter a name and optional group, click the map to set the position, adjust its heading, and save. Select an existing card to edit or delete it. Use search, map, and group filters to locate points.
 
+### Routes
 
-## Patrol Plan Management
+Routes are ordered paths with a saved speed level.
 
-1. On the map settings page, as shown in Figure 13, select **Schedule** from the top menu to open the schedule settings page.  
-2. Click the **"+"** button in the upper-right corner to open the schedule settings dialog, as shown in Figure 14.  
-3. In the dialog, use the **Select a route** section in the upper-right corner to add inspection routes, and preview the selected routes on the left. Then enter the inspection plan name, select the enabled weekdays, and set the start time, end time, and inspection interval. Finally, choose whether to return Home after completion. After you click **Save**, the system will start executing the inspection plan according to the settings.  
-4. After the inspection plan is configured, it will appear in the list as shown in Figure 15, with a summary of the inspection information. You can also click the Enabled field to switch between Active and Inactive, and click Edit to edit or delete the plan, as shown in the plan edit figure.
+![English route list](images/en-routes.png)
 
-![][image26]
+To create one, open **Map > Route**, select **+**, choose a map, enter a name, select a speed multiplier, and click the map in travel order to add points. Select a point to adjust its heading or remove it. Save when the preview follows the intended safe path. Select an existing route card to edit or delete it.
 
-**Figure 13**
+### Patrol plans
 
-![][image27]
+A patrol plan combines a point sequence with actions that run at selected points.
 
-**Figure 14**
+![English patrol plans and weekly schedule preview](images/en-patrols.png)
 
-![][image28]
+1. Open **Map > Patrol plan** and select **+**, or select an existing plan card to edit it.
+2. Name the plan and confirm its map.
+3. Add saved routes, asset points, or reusable plan sequences from the source rail. You can also pick points directly on the map.
+4. Reorder or remove points in the sequence.
+5. Add supported tasks to individual points or across a selected point range. Task types depend on the connected robot and configured agent capabilities.
+6. Review the point, distance, and estimated-duration summary, then select **Save**.
 
-**Figure 15**
+The editor warns before leaving with unsaved changes. Deleting a plan requires confirmation.
 
-![][plan-edit]
+### Schedules
 
-**Figure: Plan Edit**
+Select **Set schedule** or **Schedule** on a patrol card. Each plan can have multiple schedules. For each schedule:
 
+1. Enter a schedule name.
+2. Select the start and end weekday.
+3. Set the daily start and end time.
+4. Set the repeat interval.
+5. Choose whether the robot returns Home after completion.
+6. Save the schedule.
 
+The weekly preview below the cards shows when each plan will run. Edit or delete schedules from the schedule dialog. Check overlapping schedules and charging time before enabling frequent runs.
 
-# **4. NVR Replay Page**
+## 10. Health
 
-As shown in Figure 16, select **Replay** from the sidebar to open the replay page.
+Open **Health** to check service and device status.
 
-1. Use the calendar at the top, shown in Figure 17, to select the year and month. Dates with recorded video data are marked with a green check mark.  
-2. Select **Single** mode for a specified camera or **Triple** mode for replay.  
-3. After selecting a date, the timeline below will mark replayable time ranges in blue, as shown in Figure 18. Move to a blue segment to start replay directly.
+![English health page](images/en-health.png)
 
-![][image29]![][image30]
+The page reports:
 
-**Figure 16 / Figure 17**
+- NVR, navigation, detection, and security-monitor service status.
+- CPU, memory, swap, and disk usage.
+- Motor temperatures.
+- Network input and output rates.
 
-![][image31]
+Treat persistent stopped services, high disk usage, or abnormal motor temperatures as maintenance issues. Confirm that data is current before diagnosing a robot that has lost its network connection.
 
-**Figure 18**
+## 11. Setting
 
-Button descriptions:
+Visible tabs depend on permissions. **General** is available to accounts that can read their profile. Configuration tabs require settings permission. **Users** requires user-management permissions.
 
-| ![][image32] | ![][image33] | ![][image34] | ![][image35] | ![][image36] | ![][image37] | ![][image38] |
-| :---- | :---- | :---- | :---- | :---- | :---- | :---- |
-| Fast Backward | Step Backward | Play | Step Forward | Fast Forward | Zoom Out | Zoom In |
+### General
 
-# **5. Logs**
+- **Personalization**: colour scheme, date/time format, and interface language.
+- **System**: automatic charging, patrol lighting, active map, map upload, and canned sound upload when permitted.
+- **Licenses**: view and update product-license information.
+- **Software**: review component versions, choose update targets, start an update, and monitor its persisted progress.
 
-As shown in Figure 19, select **Logs** from the sidebar to open the logs page.
+Software updates, map changes, restarts, and uploads can interrupt operation. Perform them only during an approved maintenance window.
 
-Here you can view AI detection events, emergency events, full inspection task reports, and user action records.
+### Detection
 
-![][image39]
+Choose which configured detection types are treated as emergency events, then select **Save Settings**.
 
-**Figure 19**
+![English detection settings](images/en-settings-detection.png)
 
-## AI Event
+### Agent tasks
 
-As shown in Figure 20, this page lets you view events detected by AI during inspections. You can also use filters to quickly find the information you need and download the report as a PDF.
+This tab lists tasks supplied by an AI agent rather than built into the central server. Authorized users can add a task name, display label, instruction, expected outcome guidance, and an available agent source. These tasks can then be assigned to points in a patrol plan.
 
-![][image40]
+### Notifications
 
-**Figure 20**
+Configure Telegram subscriber IDs, email recipients, sender address, and sender password. Press Enter after each Telegram ID or recipient address so it becomes a list item, then select **Save Settings**. Treat the sender password as a secret.
 
-Button descriptions:
+### Engineering
 
-| ![][image41] | ![][image42] | ![][image43] | ![][image44] |
-| :---- | :---- | :---- | :---- |
-| Display images | Show event location | Add filter conditions | Download as PDF |
+![English Engineering settings](images/en-settings-engineering.png)
 
-## Emergency Event
+Engineering provides specialized subpages:
 
-As shown in Figure 21, this page lets you view emergency events for the robot dog, including network disconnections, manual displacement, and unexpected incidents during task execution.
+- **Tasks**: reusable built-in task presets for patrol plans.
+- **Coverage**: plan map coverage and keep-out areas.
+- **Cameras**: configure camera devices and streams.
+- **Navigation**: goal tolerances and the default movement speed level.
+- **Update nodes**: define which devices and modules participate in software updates.
+- **Health**: disk and ROS diagnostics.
+- **Battery voltage**: review controller and robot-battery voltage history.
+- **Lidar**: inspect lidar data and source status.
+- **System log**: audit user actions and system operations.
 
-![][image45]
+These controls affect robot behaviour and service configuration. They should be changed only by trained administrators.
 
-**Figure 21**
+### Users
 
-## Task Report
+![English user management](images/en-settings-users.png)
 
-As shown in Figure 22, the left side of this page displays all inspection reports executed manually or by schedule. Each report displays a summary, including the inspection name, success or failure status, failure reason if any, elapsed time and battery consumption, number of AI events, and special AI events.
+Administrators can add users and assign a role, full name, password, and comments. The row action menu can edit or delete the user, reset the password, and activate or deactivate the account when permitted. A **Default password** badge means the user must change that password at the next sign-in.
 
-After clicking an inspection report, the right side displays all waypoints and detected event images for that report.
+## 12. Operational Notes and Troubleshooting
 
-![][image46]
+- **A page or button is missing:** your role, feature permissions, license, or connected hardware may not expose it. Ask an administrator before treating this as a fault.
+- **The robot is offline:** verify the **Link** indicator, network connection, and Health service status. Dispatch controls remain disabled until the selected robot is reachable.
+- **Commands are blocked:** an AI takeover, emergency state, active task, or insufficient permission can disable controls. Do not attempt to bypass the safety state.
+- **A destination is grey or unreachable:** confirm the active map, robot localization, walls, and no-go zones. Move the destination to a reachable area or correct the map configuration.
+- **No video is shown:** refresh the feed, verify that the camera exists under **Setting > Engineering > Cameras**, and check NVR service health.
+- **Replay is empty:** select a date and blue/recorded timeline segment, then confirm NVR availability and clock synchronization.
+- **A patrol does not run:** confirm it has points, supported tasks, a valid schedule, and no conflicting or skipped schedule entry.
+- **Localization has drifted:** use the authorized localization controls on Home/Engineering only when the robot's real position is known. An incorrect pose can make every subsequent navigation unsafe.
+- **An update appears stuck:** do not refresh repeatedly or restart power. Reopen **Setting > General > Software** and review the persisted batch status before escalating.
 
-**Figure 22**
-
-## User Action Log
-
-As shown in Figure 23, this page lets you view user operation activities in the system.
-
-![][image47]
-
-**Figure 23**
-
-# **6. Health**
-
-As shown in Figure 27, this page displays the system health status, including the following information:
-
-1. **Server status**
-2. **CPU usage**
-3. **Memory usage**
-4. **Swap usage**
-5. **Disk usage**
-6. **Motor temperatures**
-7. **Network read/write speed**
-
-![][image51]
-
-**Figure 27**
-
-# **7. Settings**
-
-After entering Settings, sub-options are available at the top, as shown in the figure.
-
-![][embedded-image-3]
-
-1. General
-
-On this page, you can configure system settings and license settings. Under System, you can configure maps, upload maps, and upload preset sound effects. Under License, you can update license information.
-
-![][embedded-image-4]
-
-2. AI
-
-On this page, you can configure emergency AI events. Emergency AI events can be displayed as a group in filters.
-
-![][embedded-image-5]
-
-3. Notifications
-
-On this page, you can configure notification items, including:
-1. Telegram: Enter your **Telegram ID** in the **Telegram Subscribers** field.
-2. Email: Enter the **Email Receiver Address List**, **Sender Address**, and **Sender Password**.
-
-![][embedded-image-6]
-
-4. Engineering
-
-Internal settings. You usually do not need to configure this item.
-
-5. User
-
-You can manage users here. After clicking Action, you can delete a user, modify user information, or change a user's password.
-
-![][embedded-image-7]
-
-[goal-edit]: images/goal-edit.png
-[image1]: images/image1.png
-[image2]: images/image2.png
-[plan-edit]: images/plan-edit.png
-[image3]: images/image3.png
-[image4]: images/image4.png
-[image5]: images/image5.png
-[image6]: images/image6.png
-[image7]: images/image7.png
-[image8]: images/image8.png
-[image9]: images/image9.png
-[image10]: images/image10.png
-[image11]: images/image11.png
-[image12]: images/image12.png
-[image13]: images/image13.png
-[image14]: images/image14.png
-[image15]: images/image15.png
-[image-init-pose]: images/image-init-pose.png
-[image-edit]: images/image-edit.png
-[image16]: images/image16.png
-[image17]: images/image17.png
-[image18]: images/image18.png
-[image19]: images/image19.png
-[image20]: images/image20.png
-[image21]: images/image21.png
-[image22]: images/image22.png
-[image23]: images/image23.png
-[image24]: images/image24.png
-[image25]: images/image25.png
-[image26]: images/image26.png
-[image27]: images/image27.png
-[image28]: images/image28.png
-[image29]: images/image29.png
-[image30]: images/image30.png
-[image31]: images/image31.png
-[image32]: images/image32.png
-[image33]: images/image33.png
-[image34]: images/image34.png
-[image35]: images/image35.png
-[image36]: images/image36.png
-[image37]: images/image37.png
-[image38]: images/image38.png
-[image39]: images/image39.png
-[image40]: images/image40.png
-[image41]: images/image41.png
-[image42]: images/image42.png
-[image43]: images/image43.png
-[image44]: images/image44.png
-[image45]: images/image45.png
-[image46]: images/image46.png
-[image47]: images/image47.png
-[image48]: images/image48.png
-[image49]: images/image49.png
-[image50]: images/image50.png
-[image51]: images/image51.png
-
-[embedded-image-1]: images/embedded-image-1.png
-[embedded-image-2]: images/embedded-image-2.png
-[embedded-image-3]: images/embedded-image-3.png
-[embedded-image-4]: images/embedded-image-4.png
-[embedded-image-5]: images/embedded-image-5.png
-[embedded-image-6]: images/embedded-image-6.png
-[embedded-image-7]: images/embedded-image-7.png
+When reporting a problem, include the time, selected robot, page, visible error, and relevant task or event record without including passwords or access tokens.
