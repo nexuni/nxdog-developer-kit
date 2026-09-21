@@ -16,16 +16,7 @@ The Security Frontend is the main web interface for monitoring and operating an 
 - Check service and hardware health.
 - Configure the system, notifications, engineering tools, and users.
 
-## 2. Before You Begin
-
-1. Connect your computer and the robot-side computers to the same network.
-2. Find the Pi 5 IP address assigned to the system.
-3. Open `https://<pi5-ip>` in a current desktop browser.
-4. Accept the browser's local-certificate warning only after confirming that the address is the correct robot.
-
-The interface is designed for a desktop-sized display. A stable connection is especially important for live video, manual driving, software updates, and map editing.
-
-## 3. Sign In and Account
+## 2. Sign In and Account
 
 ### First-time setup
 
@@ -56,7 +47,7 @@ Open **Setting > General > Personalization** to choose:
 
 Language and date-format preferences follow the signed-in account. The colour scheme is stored in the current browser.
 
-## 4. Interface Tour
+## 3. Interface Tour
 
 The left sidebar provides the main navigation:
 
@@ -71,7 +62,7 @@ The left sidebar provides the main navigation:
 
 Use **Collapse** to show only sidebar icons. The colour toggle near the lower-left corner switches the current browser between light and dark display. Settings are hidden if your account has none of the required permissions.
 
-## 5. Quick Start: Create and Run a Patrol
+## 4. Quick Start: Create and Run a Patrol
 
 1. Open **Setting > General > System** and confirm the active map. Upload a map package first if the required map is not available.
 2. On **Home**, use **Set home point** to place the Home marker at the charging station and point its arrow in the docking direction.
@@ -82,7 +73,7 @@ Use **Collapse** to show only sidebar icons. The colour toggle near the lower-le
 
 Always confirm that the map, Home position, route direction, safety area, and robot surroundings are correct before dispatching a task.
 
-## 6. Home Dashboard
+## 5. Home Dashboard
 
 The Home page is the live operating view. Its header shows the selected robot, current and next work, background task, battery, maximum motor temperature, velocity, emergency-button state, and server link.
 
@@ -112,6 +103,18 @@ The map command row provides the controls your account is allowed to use:
 
 Controls become unavailable when the selected robot is offline or an AI agent has taken control.
 
+### Initial Pose
+
+Use this when the robot restarts, loses localization, or appears in the wrong place:
+
+1. Select **Initial Pose** in the map command row. The dialog also works when the dashboard has no current map.
+2. Select the map where the robot physically stands. Changing maps clears the previous point.
+3. Click the robot's actual position, then use the heading slider to align the red arrow with the robot.
+4. Select **Submit** and wait for the success message.
+5. Close the dialog and verify the robot marker's position and heading. Repeat if either is wrong.
+
+![English Initial Pose dialog](images/en-initial-pose.png)
+
 ### Engineering mode
 
 Administrators with robot-control permission can enable **Engineering** in the header. It adds manual driving controls and direct robot instruments for microphone audio, canned audio, lighting, posture/mode, and skipping the current stop.
@@ -126,7 +129,7 @@ Manual driving is intended for an operator standing near the robot. It is availa
 - **Sensor modules** shows the latest health reported by compute, motor, thermal, gas, navigation, NVR, detection, and security-monitor modules when installed.
 - The chat button opens **NXDOG Assistant** when the server has a chat service configured.
 
-## 7. Logs
+## 6. Logs
 
 Open **Logs** and choose **Tasks**, **Events**, or **Emergency**.
 
@@ -136,6 +139,8 @@ Open **Logs** and choose **Tasks**, **Events**, or **Emergency**.
 
 The Tasks tab is the default view. Select a run to see its source, result, duration, battery usage, route on the map, stop sequence, and associated detections or failures. Runs can originate from a schedule, manual dispatch, or AI agent.
 
+The example above deliberately uses a **Finished** run: the green status, completed stops, walked path, events, and AI results show where to confirm a successful patrol.
+
 ### Events
 
 The Events tab lists AI detections. Filter by event type, time range, or a selected map area. Switch between image and map views, and use the PDF action to export the currently filtered event list.
@@ -144,7 +149,7 @@ The Events tab lists AI detections. Filter by event type, time range, or a selec
 
 The Emergency tab lists navigation, network, safety, and other urgent records. Use the display options to inspect record details and locations. Status and available actions vary with the event and your permissions.
 
-## 8. Replay
+## 7. Replay
 
 Open **Replay** to review NVR recordings together with the robot trajectory.
 
@@ -159,7 +164,7 @@ Open **Replay** to review NVR recordings together with the robot trajectory.
 
 The map panel follows recorded trajectory data for the selected time. If the page reports no video or no active trajectory, choose another recorded segment or verify NVR and navigation service health.
 
-## 9. Map Management
+## 8. Map Management
 
 Map pages are hidden from Viewer accounts and are further controlled by feature permissions. The map selector and search/filter controls are in the upper-right filter menu.
 
@@ -183,6 +188,17 @@ A patrol plan combines a point sequence with actions that run at selected points
 
 ![English patrol plans and weekly schedule preview](images/en-patrols.png)
 
+Open an existing card or select **+** to enter the full-screen editor.
+
+![English patrol-plan editor](images/en-patrol-editor.png)
+
+1. Name the plan. The summary shows waypoint count, estimated duration, distance, and map.
+2. Add a saved route, one or more asset points, or another plan from **Sources**; alternatively click the map to add a waypoint.
+3. Select a waypoint to inspect its order, position, heading, and tasks. Drag to reposition or reorder it, or remove it. Shift-click selects a continuous range.
+4. Select **Add task** and choose point or route form. Tick the points for a point task. For a route task, drag across the Gantt lane to create a span; drag either end to resize it and use **×** to remove only that span.
+5. Switch between list and Gantt views. Unsupported tasks remain visible but are skipped during execution.
+6. Select **Save** and wait for confirmation. Leaving with changes offers keep editing, discard, or save. The trash button deletes the complete plan, including its sequence, assets, and tasks.
+
 1. Open **Map > Patrol plan** and select **+**, or select an existing plan card to edit it.
 2. Name the plan and confirm its map.
 3. Add saved routes, asset points, or reusable plan sequences from the source rail. You can also pick points directly on the map.
@@ -205,7 +221,7 @@ Select **Set schedule** or **Schedule** on a patrol card. Each plan can have mul
 
 The weekly preview below the cards shows when each plan will run. Edit or delete schedules from the schedule dialog. Check overlapping schedules and charging time before enabling frequent runs.
 
-## 10. Health
+## 9. Health
 
 Open **Health** to check service and device status.
 
@@ -220,7 +236,7 @@ The page reports:
 
 Treat persistent stopped services, high disk usage, or abnormal motor temperatures as maintenance issues. Confirm that data is current before diagnosing a robot that has lost its network connection.
 
-## 11. Setting
+## 10. Setting
 
 Visible tabs depend on permissions. **General** is available to accounts that can read their profile. Configuration tabs require settings permission. **Users** requires user-management permissions.
 
@@ -271,7 +287,7 @@ These controls affect robot behaviour and service configuration. They should be 
 
 Administrators can add users and assign a role, full name, password, and comments. The row action menu can edit or delete the user, reset the password, and activate or deactivate the account when permitted. A **Default password** badge means the user must change that password at the next sign-in.
 
-## 12. Operational Notes and Troubleshooting
+## 11. Operational Notes and Troubleshooting
 
 - **A page or button is missing:** your role, feature permissions, license, or connected hardware may not expose it. Ask an administrator before treating this as a fault.
 - **The robot is offline:** verify the **Link** indicator, network connection, and Health service status. Dispatch controls remain disabled until the selected robot is reachable.
